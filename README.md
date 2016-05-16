@@ -1,4 +1,3 @@
-# dw_ex1
-Data Wrangling: Exercise 1
+# Data Wrangling: Exercise 1
 
 This is my submission for Springboard's Foundation to Data Science course: Data Wrangling - Exercise 1
