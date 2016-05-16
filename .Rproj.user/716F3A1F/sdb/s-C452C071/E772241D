@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "fruits <- c(\"apple\", \"two pears\", \"three bananas\", \"appl3\")\nstr_replace(fruits, \"[aeiou]\", \"-\")\nstr_replace_all(fruits, \"[aeiou]\", \"-\")\n\nstr_replace(fruits, \"([aeiou])\", \"\")\nstr_replace(fruits, \"([aeiou])\", \"\\\\1\\\\1\")\nstr_replace_all(fruits,\"^a\",\"gg\")\ngsub(\"^a\",\"gg\",fruits,ignore.case=TRUE)\n\nstr_replace_all(fruits, \"[aeiou]\", c(\"1\", \"2\", \"3\"))\nstr_replace_all(fruits, \"([aeiou])\", \"\\\\1\\\\1\")\n\nstri_replace_all_regex(fruits,\"^a.*\",\"apple\")\n\nstri_replace_all_fixed(\"The quick brown fox jumped over the lazy dog.\",\n                       c(\"quick\", \"brown\", \"fox\"), c(\"slow\", \"black\", \"bear\"), vectorize_all=TRUE)\nstri_replace_all_fixed(\"The quick brown fox jumped over the lazy dog.\",\n                       c(\"quick\", \"brown\", \"fox\"), c(\"slow\", \"black\", \"bear\"), vectorize_all=FALSE)",
+    "created" : 1463400728910.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "2088042498",
+    "id" : "E772241D",
+    "lastKnownWriteTime" : 13229804949012596,
+    "last_content_update" : 1463411268180,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

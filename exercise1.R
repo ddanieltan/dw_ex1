@@ -1,6 +1,7 @@
 library(dplyr)
 library(tidyr)
 library(xlsx)
+library(stringi)
 refine_original <- read.xlsx("refine_original.xlsx",1)
 tbl_df(refine_original)
 
@@ -11,10 +12,13 @@ refine_clean <- refine_original
 #convert all values to lowercase
 refine_clean$company <- tolower(refine_clean$company)
 
-#using a look up table to replace mis-spellings
-lut <- c("phillips" = "philips", "philips" = "philips", "phllips" = "philips", "fillips" = "philips", "phlips"="philips", "phillps"="philips",
-         "akzo" = "akzo", "ak zo" = "akzo", "akz0" = "akzo", "van houten"="van houten", "unilever"="unilever","unilver"="unilever")
-refine_clean$company <- lut[refine_clean$company]
+#search for strings beginning with p|f, a, v, u and replacing them with philips, akzo, van houten, unilever respectively
+refine_clean$company <- refine_clean$company %>%
+  stri_replace_all_regex("^p.*","philips") %>%
+  stri_replace_all_regex("^f.*","philips") %>%
+  stri_replace_all_regex("^a.*","akzo") %>%
+  stri_replace_all_regex("^v.*","van houten") %>%
+  stri_replace_all_regex("^u.*","unilever")
 
 #easy way to check all company values are unique
 arrange(refine_clean,company)
@@ -47,3 +51,7 @@ refine_dummy <- refine_dummy %>%
   mutate(company_akzo =ifelse(company=="akzo",1,0)) %>%
   mutate(company_van_houten =ifelse(company=="van houten",1,0)) %>%
   mutate(company_unilever =ifelse(company=="unilever",1,0))
+
+###
+#Submission
+write.csv(refine_dummy,file="refine_clean.csv")
